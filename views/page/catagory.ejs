@@ -1,0 +1,42 @@
+<% layout('layouts/boilerplate') %>
+
+<body>
+    <div class="container-fluid landingpage p-5">
+        <div class="row">
+            <% for(let Alladopt of Alladopts) { %>
+                <div class="col-6 col-md-3 mt-5 " style="margin-bottom: 100px; height: 500px;">
+                    <a href="/adoptly/<%= Alladopt.category %>/<%= Alladopt.id %>" class="text-decoration-none">
+                        <div class="card  " style="width: 100%; height: 500px; margin: 5px; padding: 20px;">
+                            <img src="<%= Alladopt.image %>" class="card-img" alt="<%= Alladopt.breed %>" style="height: 200px; width: 300px; object-fit: cover; border-radius: 10px;">
+                            <p class="card-title pt-4" style="text-align: center;"><%= Alladopt.category %></p>
+                            <div style="line-height: 1.2;" class=" p-4">
+                               
+
+                                <p class="card-text" >Breed : ₹<%= Alladopt.breed %></p>
+                                <p class="card-text" >Price : ₹<%= Alladopt.price %></p>
+                                <p class="card-text" >Locations: ₹<%= Alladopt.place %></p>
+                                <button style="background-color:#28621E; color:#ffffff ; width: 100%;">Adopt</button>
+                            </div>
+                            
+                        </div>
+
+                       
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+<style>
+    button{
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none !important;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+</style>

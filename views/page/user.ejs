@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate.ejs') %>
+<body>
+    <!-- <h1>Profile</h1> -->
+    <div class="profile-container" style="margin-top: 100px;">
+        <div class="profile-card">
+            <img src="<%= user.profileImage ? user.profileImage : '/icon.png' %>" alt="User Image" class="profile-img">
+            <div class="profile-details">
+                <h2><strong>Name:</strong> <%= user.fullName %></h2>
+                <p><strong>Email:</strong> <%= user.email %></p>
+                <p><strong>Address:</strong> <%= user.address || 'N/A' %></p>
+            </div>
+        </div>
+
+        <!-- Form to Upload Profile Picture -->
+        <form id="profileForm" action="/uploadProfile" method="POST" enctype="multipart/form-data">
+            <label for="profileImage">Upload Profile Picture:</label>
+            <input type="file" id="profileImage" name="profileImage" required>
+            <button type="submit" style="height: 50px; width: 300px; padding: 10px; margin-top: 10px; background-color:#28a745; border: none; color: #fff; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer;">Upload</button>
+        </form>
+
+        <!-- Button to Show Password Change Form -->
+        <button id="togglePasswordForm">Change Password</button>
+
+            <!-- Password Change Form (Initially Hidden) -->
+            <form id="passwordChangeForm" action="/change-password" method="POST" style="display: none; position: relative; padding: 20px; border: 1px solid #ccc; width: 300px;">
+                <button type="button" id="closeForm" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 18px; cursor: pointer;">×</button>
+
+                <label for="oldPassword">Old Password:</label>
+                <input type="password" id="oldPassword" name="oldPassword" required>
+
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+
+                <button type="submit">Update Password</button>
+            </form>
+
+            <script>
+                document.getElementById('togglePasswordForm').addEventListener('click', function () {
+                    let form = document.getElementById('passwordChangeForm');
+                    let button = document.getElementById('togglePasswordForm');
+
+                    form.style.display = 'block';
+                    button.style.display = 'none'; // Hide button when form is shown
+                });
+
+                document.getElementById('closeForm').addEventListener('click', function () {
+                    let form = document.getElementById('passwordChangeForm');
+                    let button = document.getElementById('togglePasswordForm');
+
+                    form.style.display = 'none';
+                    button.style.display = 'block'; // Show button when form is hidden
+                });
+            </script>
+
+
+    </div>
+
+    
+    
+</body>
